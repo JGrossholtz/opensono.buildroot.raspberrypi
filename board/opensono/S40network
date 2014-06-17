@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# Start the network....
+#
+
+case "$1" in
+  start)
+ 	echo "Starting network..."
+	/sbin/insmod /root/8188eu.ko
+	wpa_supplicant -Dwext -iwlan0 -c/etc/wpa_supplicant.conf&
+	sleep 2
+	dhcpcd&
+	/sbin/ifup -a
+	;;
+  stop)
+	echo -n "Stopping network..."
+	/sbin/ifdown -a
+	;;
+  restart|reload)
+	"$0" stop
+	"$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+
