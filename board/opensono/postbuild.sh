@@ -18,6 +18,7 @@ cp $WIFI_RTL8188_PATH/8188eu.ko output/target/root/
 cp $WIFI_RTL8188_PATH/rtl8188eufw.bin output/target/lib/firmware/rtlwifi/
 
 #update the wpa supplican configuration and the network config to load rtl8188eu
+cp board/opensono/interfaces output/target/etc/network
 cp board/opensono/wpa_supplicant.conf output/target/etc/
-#cp board/opensono/S40network output/target/etc/init.d/
+cp board/opensono/S40network output/target/etc/init.d/
 
